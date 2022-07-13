@@ -1,0 +1,138 @@
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <!-- START HEADER/BANNER -->
+  <tr>
+    <td align="center">
+      <table class="col-600" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="40">
+            <img style="display:block; line-height:0px; font-size:0px; border:0px; float:left;" src="https://image.s7.sfmc-content.com/lib/fe9113737461067a70/m/1/c6429fc5-3a3b-423e-8637-9745ce92c5f6.png" width="100" height="100" alt="logo">
+            <div style="float:right; margin-top:5px;">
+              <span style="font-size:18px; font-weight:bolder">%%FirstName%% %%LastName%%</span>
+              <br>
+              <span style="font-size:18px; font-weight:bolder">%%EmailAddress%%</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" background="https://images.pexels.com/photos/952437/pexels-photo-952437.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" bgcolor="#66809b" style="background-size:cover; background-position:top;height=" 400""="">
+            <table class="col-600" width="600" height="400" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="40">
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="line-height: 0px;">
+                  <img style="display:block; line-height:0px; font-size:0px; border:0px;" src="https://image.s7.sfmc-content.com/lib/fe9113737461067a70/m/1/855a169e-7394-4180-b8ea-3353d465f963.png" width="100" height="100" alt="logo">
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Raleway', sans-serif; font-size:37px; color:#d81010; line-height:24px; font-weight: bold; letter-spacing: 7px;">
+                  <span style="font-family: 'Raleway', sans-serif; font-size:37px; color:#ffffff; line-height:39px; font-weight: 300; letter-spacing: 7px;">LIVE Stream With</span>
+                  MANZENS
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Lato', sans-serif; font-size:15px; color:#ffffff; line-height:24px; font-weight: 300;">
+                  Meet The World With Manzen Thrills
+                </td>
+              </tr>
+              <tr>
+                <td height="50">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- END HEADER/BANNER -->
+  <!-- START 3 BOX SHOWCASE -->
+  <tr>
+    <td align="center">
+      <table class="col-600" width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-left:20px; margin-right:20px; border-left: 1px solid #dbd9d9; border-right: 1px solid #dbd9d9;">
+        <tr>
+          <td height="35">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-family: 'Raleway', sans-serif; font-size:22px; font-weight: bold; color:#d81010;">THANK YOU FOR REGISTRATION
+          </td>
+        </tr>
+        <tr>
+          <td height="10">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-family: 'Lato', sans-serif; font-size:14px; color:#757575; line-height:24px; font-weight: 300;">
+            %%FirstName%% You are booked in to attend a
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-family: 'Raleway', sans-serif; font-size:16px;font-weight: bold; color:#d81010;">LIVE STREAM WITH MANZENS
+          </td>
+        </tr>
+        <tr>
+          <td height="25">
+            <table width="100%" border="0" cellspacing="0" cellpadding="5" role="presentation">
+              <tr>
+                <td align="center">
+                  <table border="0" cellspacing="0" cellpadding="0" role="presentation">
+                    <tr>
+                      <td class="innertd buttonblock" align="center" bgcolor="#E20000" style=" border-radius: 18px; -moz-border-radius: 18px; -webkit-border-radius: 18px; background-color: #E20000;">
+                        <a target="_blank" style=" text-decoration: none; display: block; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #FFFFFF; text-align: center; background-color: #E20000; border: 1px solid #5D5D5D; padding: 10px; border-radius: 18px; -moz-border-radius: 18px; -webkit-border-radius: 18px;" class="buttonstyles" href="https://image.s7.sfmc-content.com/lib/fe9113737461067a70/m/1/501d144b-9958-446d-a963-66e659b5f633.ics" title="" alias="" conversion="false" data-linkto="https://">Add To The Calender</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="25">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- START FOOTER -->
+  <tr>
+    <td align="center">
+      <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" style=" border-left: 1px solid #dbd9d9; border-right: 1px solid #dbd9d9;">
+        <tr>
+          <td align="center" bgcolor="#000" background="https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" height="185">
+            <table class="col-600" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="25">
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Raleway',  sans-serif; font-size:26px; font-weight: 500; color:#d81010;">Follow us for some cool stuffs
+                </td>
+              </tr>
+              <tr>
+                <td height="25">
+                </td>
+              </tr>
+            </table>
+            <table align="center" width="35%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="center" width="30%" style="vertical-align: top;">
+                  <a href="https://www.facebook.com/designmodo" target="_blank"> <img src="https://designmodo.com/demo/emailtemplate/images/icon-fb.png"> </a>
+                </td>
+                <td align="center" class="margin" width="30%" style="vertical-align: top;">
+                  <a href="https://twitter.com/designmodo" target="_blank"> <img src="https://designmodo.com/demo/emailtemplate/images/icon-twitter.png"> </a>
+                </td>
+                <td align="center" width="30%" style="vertical-align: top;">
+                  <a href="https://plus.google.com/+Designmodo/posts" target="_blank"> <img src="https://designmodo.com/demo/emailtemplate/images/icon-googleplus.png"> </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END FOOTER -->
