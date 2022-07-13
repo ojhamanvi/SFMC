@@ -1,0 +1,286 @@
+<!-- START 3 BOX SHOWCASE -->
+<!-- END HEADER/BANNER -->
+<!-- END FOOTER -->
+<!-- START WHAT WE DO -->
+<!-- END 3 BOX SHOWCASE -->
+%%[
+VAR @email, @firstname , @lastname, @phonenumber , @question , @askanon , @carnumber , @out
+SET @email = QueryParameter('Email') 
+SET @firstname = QueryParameter('firstname') 
+SET @lastname = QueryParameter('lastname') 
+SET @carnumber = lookup("SegementDE" ,"CarNumber", "Email" , @email)
+IF RowCount(LookupRows("TriggeredSendDataExtension12","EmailAddress",@email))>0 THEN
+     /* if user has already registered the user will get success page only*/
+         Redirect(CloudPagesURL(19866))
+ELSEIF RequestParameter("submitted") == true then
+VAR @ts, @tsDef, @ts_extkey, @EmailAddress, @ts_sub, @ts_statusCode, @ts_statusMsg, @errorCode, @FirstName, @LastName, @PhoneNumber, @QuestionToGuests, @ToBeAskedAnonymously, @PersonContactID,  @TriggerSendFirstName, @TriggerSendLastName, @TriggerPhone, @RequesteToGuests, @Triggeranonymous, @Triggercarnumber, @id, @CM, @row
+SET @ts = CreateObject("TriggeredSend")
+SET @tsDef = CreateObject("TriggeredSendDefinition")
+SET @ts_extkey = "344701" 
+SET @EmailAddress = RequestParameter('email') 
+SET @FirstName = RequestParameter('fname') 
+SET @LastName = RequestParameter('lname') 
+SET @CarNumber = @carnumber
+SET @PhoneNumber =  RequestParameter("phone")
+SET @QuestionToGuests = RequestParameter("question")
+SET @ToBeAskedAnonymously =   RequestParameter("ask_anon")
+SetObjectProperty(@tsDef, "CustomerKey", @ts_extkey)
+SetObjectProperty(@ts, "TriggeredSendDefinition", @tsDef)
+SET @ts_sub = CreateObject("Subscriber")
+SetObjectProperty(@ts_sub, "EmailAddress",@EmailAddress)
+SetObjectProperty(@ts_sub, "SubscriberKey",@EmailAddress)
+SET @TriggerSendFirstName = CreateObject("Attribute")
+ SetObjectProperty(@TriggerSendFirstName, "Name", "FirstName")
+ SetObjectProperty(@TriggerSendFirstName,"Value",@FirstName)
+ AddObjectArrayItem(@ts, "Attributes", @TriggerSendFirstName)
+ SET @TriggerSendLastName = CreateObject("Attribute")
+ SetObjectProperty(@TriggerSendLastName, "Name", "LastName")
+ SetObjectProperty(@TriggerSendLastName,"Value",@LastName)
+ AddObjectArrayItem(@ts, "Attributes", @TriggerSendLastName)
+ SET @TriggerPhone = CreateObject("Attribute")
+ SetObjectProperty(@TriggerPhone, "Name", "PhoneNumber")
+ SetObjectProperty(@TriggerPhone,"Value", @PhoneNumber)
+ AddObjectArrayItem(@ts, "Attributes", @TriggerPhone)
+ SET @RequesteToGuests = CreateObject("Attribute")
+ SetObjectProperty(@RequesteToGuests, "Name", "Question")
+ SetObjectProperty(@RequesteToGuests,"Value", @QuestionToGuests)
+ AddObjectArrayItem(@ts, "Attributes", @RequesteToGuests)
+ SET @Triggeranonymous = CreateObject("Attribute")
+ SetObjectProperty(@Triggeranonymous, "Name", "Askanon")
+ SetObjectProperty(@Triggeranonymous,"Value", @ToBeAskedAnonymously)
+ AddObjectArrayItem(@ts, "Attributes", @Triggeranonymous)
+ SET @Triggercarnumber = CreateObject("Attribute")
+ SetObjectProperty(@Triggercarnumber, "Name", "CarNumber")
+ SetObjectProperty(@Triggercarnumber,"Value", @CarNumber)
+ AddObjectArrayItem(@ts, "Attributes", @Triggercarnumber)
+AddObjectArrayItem(@ts, "Subscribers", @ts_sub)
+SET @ts_statusCode = InvokeCreate(@ts, @ts_statusMsg, @errorCode) ]%%
+%%[ IF @ts_statusCode != "OK" THEN ]%%
+%% [ Redirect(CloudPagesURL(19867)) ]%%
+%%[ ELSE
+  Redirect(CloudPagesURL(19866))
+ENDIF ]%% 
+%%[
+endif
+]%%
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600" rel="stylesheet" type="text/css">
+<style>
+  body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,
+  pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    padding:0;
+    margin:0;
+  }
+  fieldset, img {
+    border:0}
+  ol, ul, li {
+    list-style:none}
+  :focus {
+    outline:none}
+  body,
+  input,
+  textarea,
+  select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #4c4c4c;
+  }
+  p {
+    font-size: 12px;
+    width: 150px;
+    display: inline-block;
+    margin-left: 18px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 300;
+    color: #4c4c4c;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+  }
+  html{
+    background-color: #ffffff;
+  }
+  .testbox {
+    margin: 20px auto;
+    width: 100%;
+    height: 550px;
+    background-color: #000;
+    color:#d81010;
+    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border: solid 1px #cbc9c9;
+  }
+  .testbox h1{
+    color:#fff;
+  }
+  form{
+    text-align:center;
+  }
+  label{
+    float:left;
+    margin-left:55px;
+  }
+  hr{
+    color: #a9a9a9;
+    opacity: 0.3;
+  }
+  input[type=text],select,textarea{
+    width: 80%;
+    height: 39px;
+    -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+    -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
+    border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+    background-color: #fff;
+    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    border: solid 1px #cbc9c9;
+    margin-left: -5px;
+    margin-top: 13px;
+    padding-left: 10px;
+  }
+  .accounttype{
+    margin-left: 8px;
+    margin-top: 20px;
+  }
+  button {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin: 10px 8px 20px 0px;
+    display: inline-block;
+    text-decoration: none;
+    width: 100px;
+    height: 35px;
+    background-color: #000;
+    border:2px solid #fff;
+    top: 0px;
+    position: relative;
+  }
+  button:hover {
+    top: 3px;
+    color:#d81010;
+    background-color:#fff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+</style>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <!-- START HEADER/BANNER -->
+  <tr>
+    <td align="center">
+      <table class="col-600" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="40">
+            <img style="display:block; line-height:0px; font-size:0px; border:0px; float:left;" src="https://image.s7.sfmc-content.com/lib/fe9113737461067a70/m/1/c6429fc5-3a3b-423e-8637-9745ce92c5f6.png" width="100" height="100" alt="logo">
+            <div style="float:right; margin-top:5px;">
+              <span style="font-size:18px; font-weight:bolder">%%=v(@firstname)=%% %%=v(@lastname)=%%</span>
+              <br>
+              <span style="font-size:18px; font-weight:bolder">%%=v(@email)=%%</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" background="https://images.pexels.com/photos/952437/pexels-photo-952437.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" bgcolor="#66809b" style="background-size:cover; background-position:top;height=" 400""="">
+            <table class="col-600" width="600" height="400" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="40">
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="line-height: 0px;">
+                  <img style="display:block; line-height:0px; font-size:0px; border:0px;" src="https://image.s7.sfmc-content.com/lib/fe9113737461067a70/m/1/855a169e-7394-4180-b8ea-3353d465f963.png" width="100" height="100" alt="logo">
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Raleway', sans-serif; font-size:37px; color:#d81010; line-height:24px; font-weight: bold; letter-spacing: 7px;">
+                  <span style="font-family: 'Raleway', sans-serif; font-size:37px; color:#ffffff; line-height:39px; font-weight: 300; letter-spacing: 7px;">LIVE Stream With</span>
+                  Manzen
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Lato', sans-serif; font-size:15px; color:#ffffff; line-height:24px; font-weight: 300;">
+                  Meet The World With Manzen Thrill
+                </td>
+              </tr>
+              <tr>
+                <td height="50">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- END HEADER/BANNER -->
+  <!-- START 3 BOX SHOWCASE -->
+  <tr>
+    <td align="center">
+      <table class="col-600" width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-left:20px; margin-right:20px; border-left: 1px solid #dbd9d9; border-right: 1px solid #dbd9d9;">
+        <tr>
+          <td height="35">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-family: 'Raleway', sans-serif; font-size:22px; font-weight: bold; color:#d81010;">Welcome to the LIVE stream with MANZEN.
+          </td>
+        </tr>
+        <tr>
+          <td height="10">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-family: 'Lato', sans-serif; font-size:14px; color:#757575; line-height:24px; font-weight: 300;">
+            Register Now to secure Your Place
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="col-600" width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="border-left: 1px solid #dbd9d9; border-right: 1px solid #dbd9d9; ">
+        <tr>
+          <td height="10">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="testbox">
+              <h1>Registration
+              </h1>
+              <form method="post" action="%%= RequestParameter('PAGEURL') =%%">
+                <hr>
+                <input type="text" readonly="true" name="email" id="name" placeholder="Email" value="%%=v(@email)=%%" required="">
+                <br>
+                <input type="text" name="fname" id="fname" placeholder="First Name" value="%%=v(@firstname)=%%" required="">
+                <br>
+                <input type="text" name="lname" id="lname" placeholder="Last Name" value="%%=v(@lastname)=%%" required="">
+                <br>
+                <input type="text" name="phone" id="phone" placeholder="Phone Number" required="" maxlength="10" minlength="10" pattern="^\d{10}$">
+                <br>
+                <label>Do you have any question for Manzen?</label> 
+                <br>
+                <textarea name="question" rows="3"></textarea> 
+                <br>
+                <label>Do you want your question to be asked anonymously?</label> 
+                <br>
+                <select name="ask_anon" id="ask_anon">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+                <br>
+                <input type="hidden" name="submitted" value="true">
+                <button type="submit" class="button">Register</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

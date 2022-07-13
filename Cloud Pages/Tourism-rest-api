@@ -1,0 +1,113 @@
+%%[
+Set @coupon = Random(11111,99999)
+SET @email = QueryParameter('Email')
+/*SET @SubscriberKey = QueryParameter('Email') */
+SET @destination_code = QueryParameter('trip_code')
+/*SET @data = Lookup("DicsountTrip","trip_count","EmailAddress",@email)*/
+
+set @rows = LookupRows("DicsountTrip","EmailAddress",@email)
+set @rowCount = rowcount(@rows)
+if @rowCount > 0 then
+
+ 
+  set @row = row(@rows,1) /* get row #1 */
+  set @trip_count = field(@row,"trip_count")
+  set @fname = field(@row,"FirstName")
+  set @lname = field(@row,"LastName")
+endif
+
+if @trip_count>="5" Then
+SET @CoupanDisc="80"
+elseif @trip_count=="4" Then
+SET @CoupanDisc="50"
+elseif @trip_count=="3" Then
+SET @CoupanDisc="30"
+else
+SET @CoupanDisc = "0"
+endif
+]%%
+
+
+<script runat="server">
+
+Platform.Load("Core", "1.1.1");
+
+var data = {
+  email: Variable.GetValue("@email"),
+  FirstName : Variable.GetValue("@fname"),
+  LastName :Variable.GetValue("@lname"),
+  destination_code: Variable.GetValue("@destination_code"),
+  coupon : Variable.GetValue("@coupon"),
+  CoupanDisc :Variable.GetValue("@CoupanDisc")
+}
+
+var setup = {
+authBaseURI: "https://{some alpha numeric value}.auth.marketingcloudapis.com/",
+restBaseURI: "https://{some alpha numeric value}.rest.marketingcloudapis.com/",
+clientId: "{some alpha numeric value}",
+clientSecret: "{some alpha numeric value}",
+eventDefinitionKey: "APIEvent-{some-alpha-numeric-value}"
+}
+
+
+
+try {
+  var token = getToken(setup);
+  var success = false;
+  if (token){
+    success = triggerEvent(token, setup, data);
+    Write(Stringify(success))
+  }
+} catch (err) {
+  Write("Error11: " + Stringify(err));
+}
+
+function getToken(setup) {
+
+  var config = {
+    url : setup.authBaseURI + "v2/token",
+    contentType : "application/json",
+    payload : {
+      "client_id": setup.clientId,
+      "client_secret": setup.clientSecret,
+      "grant_type": "client_credentials"
+    }
+  }
+
+  var req = HTTP.Post(config.url, config.contentType, Stringify(config.payload));
+
+  if (req.StatusCode == 200) {
+    var res = Platform.Function.ParseJSON(req.Response[0]);
+    return res.access_token;
+  } else {
+    return false;
+  }
+
+}
+
+function triggerEvent(token, setup, data) {
+  var config = {
+  url : setup.restBaseURI + "interaction/v1/events",
+  contentType : "application/json",
+  headerName : ["Authorization"],
+  headerValue : ["Bearer " + token],
+  payload : {
+    ContactKey: data.email,
+    EventDefinitionKey: setup.eventDefinitionKey,
+    Data: data
+  }
+}
+
+/*return config;*/
+var req = HTTP.Post(config.url, config.contentType, Stringify(config.payload), config.headerName, config.headerValue);
+
+if (req.StatusCode == 201) {
+  var res = Platform.Function.ParseJSON(req["Response"][0]);
+    if (res.eventInstanceId != null && res.eventInstanceId != "") return true;
+  } else {
+    return false;
+  }
+}
+
+</script>
+
