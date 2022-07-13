@@ -1,0 +1,54 @@
+<script runat="server">
+  
+ Platform.Load("core", "1.1.1");
+  
+function deRetrieve(DEval,DEprop){
+  
+    var FindDE = DataExtension.Retrieve({
+    Property:DEprop,SimpleOperator:"equals",Value:DEval}
+                                     );
+    var FolderID = FindDE[0].CategoryID;
+    var DEname = FindDE[0].Name;
+    var list = [];
+    list.push(DEname);
+    path(FolderID);
+    return [list.join(" > "),FindDE];
+  
+}
+
+function path(id){  
+    if (id> 0) {
+      var results = Folder.Retrieve({
+        Property:"ID",SimpleOperator:"equals",Value:id}
+                                   );
+      list.unshift(results[0].Name);
+      return path(results[0].ParentFolder.ID);     
+    }
+    else {
+      return id;  
+    }
+}  
+  
+function queryPath(FolderID,qName){
+    var list = [];
+    list.push(qName);
+    path(FolderID);
+    return list.join(" > ");
+}
+  
+function accountRetrieve(DEval){  
+  
+    var DE = DataExtension.Init(DEval);  
+    var fields = DE.Fields.Retrieve();  
+    return fields;
+}
+  
+  function queryRetrieve(DEval,DEprop){
+   var QueryResults = QueryDefinition.Retrieve({
+    Property:DEprop,SimpleOperator:"equals",Value:DEval});                                            
+   
+   /*Write(Stringify(QueryResults));*/
+   return QueryResults;
+  }
+  
+</script>
